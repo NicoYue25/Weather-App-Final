@@ -78,7 +78,6 @@ function getCurrentPosition() {
 
 //Current weather data in ºC
 function displayCurrentInfo(response) {
-  console.log(response.data);
   document.querySelector("#city").innerHTML = response.data.name.toUpperCase();
   document.querySelector("#current-date").innerHTML = formatDate(
     (response.data.dt + response.data.timezone) * 1000
@@ -88,6 +87,12 @@ function displayCurrentInfo(response) {
   );
 
   //Temps
+  document
+    .querySelector("#current-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   document.querySelector("#description").innerHTML =
     `${response.data.weather[0].description}`.toUpperCase();
   document.querySelector("#temp").innerHTML = `${Math.round(
