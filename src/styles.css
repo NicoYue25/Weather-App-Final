@@ -1,0 +1,122 @@
+body {
+  background: radial-gradient(
+    1002px at -0.1% 47%,
+    rgb(53, 92, 125) 0%,
+    rgb(108, 91, 123) 51.2%,
+    rgb(192, 108, 132) 100.2%
+  );
+  color: #6e2e6d;
+}
+
+h1,
+h5 {
+  margin-top: 15px;
+}
+
+.container {
+  background-color: rgb(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(117, 117, 117, 0.2);
+  display: block;
+  margin: 80px auto;
+  max-width: 800px;
+  padding: 15px;
+  padding-left: 25px;
+}
+
+.col {
+  text-align: center;
+}
+
+.spacing {
+  margin: 0 auto;
+}
+
+.searchInput {
+  display: inline-block;
+  width: 60%;
+}
+
+.sBtn {
+  margin-top: -3px;
+  padding: 5px 20px;
+}
+
+.units {
+  text-align: center;
+  font-size: 25px;
+  color: #6e2e6d;
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+.deg {
+  margin-left: 25px;
+}
+
+#tempC {
+  border-right: 1px solid #6e2e6d;
+}
+
+.stylingHr {
+  margin: auto;
+  margin-bottom: 10px;
+  width: 80%;
+  background-color: #a72222;
+  border: none;
+}
+
+.locationPic {
+  display: block;
+  padding: 10px;
+  margin: 5px auto;
+  max-width: 80%;
+}
+
+.weather {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 700;
+}
+
+.link {
+  text-align: right;
+  margin: 15px 15px 0px 0px;
+}
+
+.currentTemp {
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  line-height: 60px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.row-cols-2 {
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  padding-left: 10px;
+}
+
+.info {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgba(72, 61, 139, 0.1);
+}
+
+.icons {
+  display: block;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 48px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: rgba(72, 61, 139, 0.1);
+}
+
+.temp {
+  margin: 0;
+}
