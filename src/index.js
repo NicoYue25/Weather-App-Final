@@ -57,6 +57,8 @@ function formatTime(timestamp) {
 function defaultCity(city) {
   let apiUrl = `${apiEndpoint}q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentInfo);
+  fLink.classList.remove("active");
+  cLink.classList.add("active");
 }
 
 //Access to openweathermap via city name (search option)
@@ -70,6 +72,8 @@ function searchCity(event) {
 function showPosition(position) {
   let apiUrl = `${apiEndpoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentInfo);
+  fLink.classList.remove("active");
+  cLink.classList.add("active");
 }
 
 function getCurrentPosition() {
