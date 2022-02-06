@@ -45,17 +45,19 @@ h5 {
 .units {
   text-align: center;
   font-size: 25px;
+  line-height: 1;
+  font-weight: 400;
+  padding: 0 10px;
+}
+
+.units .active {
   color: #6e2e6d;
+  cursor: default;
   text-decoration: none;
-  padding: 0 5px;
 }
 
 .deg {
   margin-left: 25px;
-}
-
-#tempC {
-  border-right: 1px solid #6e2e6d;
 }
 
 .stylingHr {
@@ -80,10 +82,12 @@ h5 {
   line-height: 5px;
   font-weight: 700;
 }
+
 .currentIcon {
   position: relative;
   top: -15px;
 }
+
 .link {
   text-align: right;
   margin: 15px 15px 0px 0px;

@@ -86,21 +86,24 @@ function displayCurrentInfo(response) {
     (response.data.dt + response.data.timezone) * 1000
   );
 
-  //Temps
   document
     .querySelector("#current-icon")
     .setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+
+  //temp
+  celsiusCurrentTemp = response.data.main.temp;
+  celsiusFeelsLike = response.data.main.feels_like;
   document.querySelector("#description").innerHTML =
     `${response.data.weather[0].description}`.toUpperCase();
   document.querySelector("#temp").innerHTML = `${Math.round(
-    response.data.main.temp
-  )}ºC`;
+    celsiusCurrentTemp
+  )}`;
   document.querySelector("#feels-like-temp").innerHTML = `${Math.round(
-    response.data.main.feels_like
-  )}ºC`;
+    celsiusFeelsLike
+  )}`;
 
   //Additional weather info
   let timeZone = response.data.timezone;
@@ -129,13 +132,44 @@ function displayCurrentInfo(response) {
   )} km/h`;
 }
 
-let inputtedCity = document.querySelector("#search-form");
-inputtedCity.addEventListener("submit", searchCity);
+function convertTempF(event) {
+  event.preventDefault();
+  cLink.classList.remove("active");
+  fLink.classList.add("active");
 
-let currentLocationButton = document.querySelector("#my-location");
-currentLocationButton.addEventListener("click", getCurrentPosition);
+  let currentTempF = (celsiusCurrentTemp * 9) / 5 + 32;
+  document.querySelector("#temp").innerHTML = Math.round(currentTempF);
+
+  let currentFeelF = (celsiusFeelsLike * 9) / 5 + 32;
+  document.querySelector("#feels-like-temp").innerHTML =
+    Math.round(currentFeelF);
+}
+
+function convertTempC(event) {
+  event.preventDefault();
+  fLink.classList.remove("active");
+  cLink.classList.add("active");
+
+  document.querySelector("#temp").innerHTML = Math.round(celsiusCurrentTemp);
+  document.querySelector("#feels-like-temp").innerHTML =
+    Math.round(celsiusFeelsLike);
+}
 
 let apiKey = `0db5aea5f51b643e130f4d71ecc51fa1`;
 let apiEndpoint = `https://api.openweathermap.org/data/2.5/weather?`;
+
+let celsiusCurrentTemp = null;
+let celsiusFeelsLike = null;
+
+document.querySelector("#search-form").addEventListener("submit", searchCity);
+document
+  .querySelector("#my-location")
+  .addEventListener("click", getCurrentPosition);
+
+let fLink = document.querySelector("#temp-F");
+fLink.addEventListener("click", convertTempF);
+
+let cLink = document.querySelector("#temp-C");
+cLink.addEventListener("click", convertTempC);
 
 defaultCity("Toronto");

@@ -50,9 +50,9 @@
           My Location
         </button>
 
-        <span class="unit">
-          <a href="#" class="units" id="tempC"> °C </a>
-          <a href="#" class="units" id="tempF"> ºF </a>
+        <span class="units">
+          <a href="#" class="active" id="temp-C">°C </a>|
+          <a href="#" class="" id="temp-F"> °F </a>
         </span>
       </form>
 
@@ -81,9 +81,14 @@
                 <div class="col-6 info">
                   <div class="row">
                     <div class="col currentTemp">
-                      <div class="temp" id="temp">---</div>
+                      <div class="temp">
+                        <span class="temp" id="temp">---</span>
+                        <span id="unitCF">°C</span>
+                      </div>
+
                       <div class="weather">
-                        Feels like <span id="feels-like-temp">---</span>
+                        Feels like <span id="feels-like-temp">---</span
+                        ><span id="unitCF">°C</span>
                       </div>
                     </div>
                   </div>
