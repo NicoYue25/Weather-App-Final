@@ -75,14 +75,14 @@ h5 {
 
 .weather {
   position: relative;
-  top: 0px;
+  top: -10px;
   font-size: 12px;
   line-height: 5px;
   font-weight: 700;
 }
 .currentIcon {
   position: relative;
-  top: -20px;
+  top: -15px;
 }
 .link {
   text-align: right;
@@ -123,5 +123,6 @@ h5 {
 }
 
 .temp {
-  margin: 4px;
+  margin: 0px;
+  padding-bottom: 15px;
 }
