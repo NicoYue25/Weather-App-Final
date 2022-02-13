@@ -90,6 +90,9 @@ function displayCurrentInfo(response) {
     (response.data.dt + response.data.timezone) * 1000
   );
 
+  //forecast
+  displayForecast();
+
   document
     .querySelector("#current-icon")
     .setAttribute(
@@ -147,6 +150,8 @@ function convertTempF(event) {
   let currentFeelF = (celsiusFeelsLike * 9) / 5 + 32;
   document.querySelector("#feels-like-temp").innerHTML =
     Math.round(currentFeelF);
+
+  document.querySelector("#unitCF").innerHTML = "°F";
 }
 
 function convertTempC(event) {
@@ -157,6 +162,28 @@ function convertTempC(event) {
   document.querySelector("#temp").innerHTML = Math.round(celsiusCurrentTemp);
   document.querySelector("#feels-like-temp").innerHTML =
     Math.round(celsiusFeelsLike);
+  document.querySelector("#unitCF").innerHTML = "°C";
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+  let days = ["THU", "FRI", "SAT", "SUN", "MON"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col icons"><i class="fas fa-cloud-sun-rain"></i></div>
+              <div class="col info">
+                <div class="forecast-date">${day}</div>
+                <hr class="stylingHr" />
+                <span class="low"> 1º</span> | <span class="high">5º</span
+                ><br />
+                <i class="fas fa-cloud-rain"></i> 10%<br />
+              </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
 }
 
 let apiKey = `0db5aea5f51b643e130f4d71ecc51fa1`;

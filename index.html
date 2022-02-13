@@ -83,12 +83,11 @@
                     <div class="col currentTemp">
                       <div class="temp">
                         <span class="temp" id="temp">---</span
-                        ><span class="unitCF">°C</span>
+                        ><span id="unitCF">°C</span>
                       </div>
 
                       <div class="weather">
-                        Feels like <span id="feels-like-temp">---</span
-                        ><span class="unitCF">°C</span>
+                        Feels like <span id="feels-like-temp">---</span>°
                       </div>
                     </div>
                   </div>
@@ -103,51 +102,9 @@
             </div>
           </div>
 
-          <div class="col col-6">
+          <div class="weather-forecast col col-6">
             <h5>Your 5 day forecast</h5>
-            <div class="row row-cols-2">
-              <div class="col icons"><i class="fas fa-cloud-sun-rain"></i></div>
-              <div class="col info">
-                <div class="days">SAT</div>
-                <hr class="stylingHr" />
-                <span class="low"> 1º</span>/<span class="high">5º</span><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
-              </div>
-
-              <div class="col icons"><i class="fas fa-sun"></i></div>
-              <div class="col info">
-                <div class="days">SUN</div>
-                <hr class="stylingHr" />
-                <span class="low"> 2º</span>/<span class="high">9º</span><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
-              </div>
-
-              <div class="col icons"><i class="fas fa-cloud-sun"></i></div>
-              <div class="col info">
-                <div class="days">MON</div>
-                <hr class="stylingHr" />
-                <span class="low"> 3º</span>/<span class="high">8º</span><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
-              </div>
-
-              <div class="col icons">
-                <i class="fas fa-cloud-showers-heavy"></i>
-              </div>
-              <div class="col info">
-                <div class="days">TUE</div>
-                <hr class="stylingHr" />
-                <span class="low"> 0º</span>/<span class="high">4º</span><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
-              </div>
-
-              <div class="col icons"><i class="fas fa-cloud-sun"></i></div>
-              <div class="col info">
-                <div class="days">WED</div>
-                <hr class="stylingHr" />
-                <span class="low"> 3º</span>/<span class="high">10º</span><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
-              </div>
-            </div>
+            <div class="row row-cols-2" id="forecast"></div>
           </div>
         </div>
       </div>
