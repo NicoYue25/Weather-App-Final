@@ -130,3 +130,12 @@ h5 {
   margin: 0px;
   padding-bottom: 15px;
 }
+
+.low {
+  color: blue;
+  font-size: small;
+}
+.high {
+  color: crimson;
+  font-size: small;
+}
