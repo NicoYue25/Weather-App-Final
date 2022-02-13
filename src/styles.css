@@ -34,7 +34,7 @@ h5 {
 
 .searchInput {
   display: inline-block;
-  width: 60%;
+  width: 58%;
 }
 
 .sBtn {
@@ -62,7 +62,6 @@ h5 {
 
 .stylingHr {
   margin: auto;
-  margin-bottom: 10px;
   width: 80%;
   background-color: #a72222;
   border: none;
@@ -95,8 +94,7 @@ h5 {
 
 .currentTemp {
   border-left: 2px solid rgba(0, 0, 0, 0.2);
-  margin: 10px 0;
-  line-height: 60px;
+  line-height: 59px;
   font-size: 40px;
   font-weight: 700;
 }
@@ -106,10 +104,14 @@ h5 {
   padding-left: 10px;
 }
 
-.info {
-  padding: 10px;
+.forecastBackground {
   margin-top: 5px;
   margin-bottom: 5px;
+  background-color: rgba(72, 61, 139, 0.1);
+}
+
+.info {
+  padding: 10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: rgba(72, 61, 139, 0.1);
@@ -117,13 +119,9 @@ h5 {
 
 .icons {
   display: block;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
   font-size: 48px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  background-color: rgba(72, 61, 139, 0.1);
 }
 
 .temp {

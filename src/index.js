@@ -1,4 +1,4 @@
-//Date ex Wednesday January 5, 2022
+//Current Date ex Wednesday January 5, 2022
 function formatDate(timestamp) {
   let now = new Date(timestamp);
   let date = now.getUTCDate();
@@ -30,12 +30,12 @@ function formatDate(timestamp) {
     "December",
   ];
   let month = months[now.getUTCMonth()];
-  let formattedDate = `${weekday} ${month} ${date}, ${year}`;
+  let formattedDate = `<br>${weekday} ${month} ${date}, ${year}`;
 
   return formattedDate;
 }
 
-//Time ex. 14:57
+//Current Time ex. 14:57
 function formatTime(timestamp) {
   let time = new Date(timestamp);
   let hour = time.getUTCHours();
@@ -51,6 +51,15 @@ function formatTime(timestamp) {
   let formattedTime = `${hour}:${minutes}`;
 
   return formattedTime;
+}
+
+//Forecast Days
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+  return days[day];
 }
 
 //Access to openweathermap via city name
@@ -80,6 +89,13 @@ function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+//Access to openwathermap daily forecast
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
+
 //Current weather data in ºC
 function displayCurrentInfo(response) {
   document.querySelector("#city").innerHTML = response.data.name.toUpperCase();
@@ -89,9 +105,6 @@ function displayCurrentInfo(response) {
   document.querySelector("#current-time").innerHTML = formatTime(
     (response.data.dt + response.data.timezone) * 1000
   );
-
-  //forecast
-  displayForecast();
 
   document
     .querySelector("#current-icon")
@@ -137,6 +150,8 @@ function displayCurrentInfo(response) {
   document.querySelector("#wind").innerHTML = `${Math.round(
     (response.data.wind.speed * 60 * 60) / 1000
   )} km/h`;
+
+  getForecast(response.data.coord);
 }
 
 function convertTempF(event) {
@@ -165,22 +180,32 @@ function convertTempC(event) {
   document.querySelector("#unitCF").innerHTML = "°C";
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
-  let days = ["THU", "FRI", "SAT", "SUN", "MON"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` <div class="col icons"><i class="fas fa-cloud-sun-rain"></i></div>
-              <div class="col info">
-                <div class="forecast-date">${day}</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        ` <div class="col icons forecastBackground">
+      <img src="http://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png"/>
+      </div>
+              <div class="col info forecastBackground">
+                <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
                 <hr class="stylingHr" />
-                <span class="low"> 1º</span> | <span class="high">5º</span
-                ><br />
-                <i class="fas fa-cloud-rain"></i> 10%<br />
+                <span class="high">${Math.round(
+                  forecastDay.temp.max
+                )}º</span> | <span class="low">${Math.round(
+          forecastDay.temp.min
+        )}º</span>
+                <br />
+                <i class="fa-solid fa-droplet"></i> ${forecastDay.humidity}%
               </div>`;
+    }
   });
 
   forecastElement.innerHTML = forecastHTML;
