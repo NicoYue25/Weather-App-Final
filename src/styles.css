@@ -71,7 +71,8 @@ h5 {
   display: block;
   padding: 10px;
   margin: 5px auto;
-  max-width: 80%;
+  max-height: 60%;
+  max-width: 70%;
 }
 
 .weather {
@@ -88,8 +89,9 @@ h5 {
 }
 
 .link {
-  text-align: right;
+  text-align: center;
   margin: 15px 15px 0px 0px;
+  font-size: 12px;
 }
 
 .currentTemp {
