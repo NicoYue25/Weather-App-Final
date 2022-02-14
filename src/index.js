@@ -66,8 +66,8 @@ function formatDay(timestamp) {
 function defaultCity(city) {
   let apiUrl = `${apiEndpoint}q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentInfo);
-  fLink.classList.remove("active");
-  cLink.classList.add("active");
+  fLink.classList.remove("activeUnit");
+  cLink.classList.add("activeUnit");
 }
 
 //Access to openweathermap via city name (search option)
@@ -81,8 +81,8 @@ function searchCity(event) {
 function showPosition(position) {
   let apiUrl = `${apiEndpoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentInfo);
-  fLink.classList.remove("active");
-  cLink.classList.add("active");
+  fLink.classList.remove("activeUnit");
+  cLink.classList.add("activeUnit");
 }
 
 function getCurrentPosition() {
@@ -155,8 +155,11 @@ function displayCurrentInfo(response) {
 
 function convertTempF(event) {
   event.preventDefault();
-  cLink.classList.remove("active");
-  fLink.classList.add("active");
+  cLink.classList.remove("activeUnit");
+  fLink.classList.add("activeUnit");
+
+  cLink.addEventListener("click", convertTempC);
+  fLink.removeEventListener("click", convertTempF);
 
   let currentTempF = (celsiusCurrentTemp * 9) / 5 + 32;
   document.querySelector("#temp").innerHTML = Math.round(currentTempF);
@@ -166,17 +169,44 @@ function convertTempF(event) {
     Math.round(currentFeelF);
 
   document.querySelector("#unitCF").innerHTML = "°F";
+
+  let forecastMax = document.querySelectorAll(".high");
+  forecastMax.forEach(function (forecast) {
+    let currentTemp = forecast.innerHTML;
+    forecast.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastMin = document.querySelectorAll(".low");
+  forecastMin.forEach(function (forecast) {
+    let currentTemp = forecast.innerHTML;
+    forecast.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
 }
 
 function convertTempC(event) {
   event.preventDefault();
-  fLink.classList.remove("active");
-  cLink.classList.add("active");
+  fLink.classList.remove("activeUnit");
+  cLink.classList.add("activeUnit");
+
+  fLink.addEventListener("click", convertTempF);
+  cLink.removeEventListener("click", convertTempC);
 
   document.querySelector("#temp").innerHTML = Math.round(celsiusCurrentTemp);
   document.querySelector("#feels-like-temp").innerHTML =
     Math.round(celsiusFeelsLike);
   document.querySelector("#unitCF").innerHTML = "°C";
+
+  let forecastMax = document.querySelectorAll(".high");
+  forecastMax.forEach(function (forecast) {
+    let currentTemp = forecast.innerHTML;
+    forecast.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  let forecastMin = document.querySelectorAll(".low");
+  forecastMin.forEach(function (forecast) {
+    let currentTemp = forecast.innerHTML;
+    forecast.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
 }
 
 function displayForecast(response) {
@@ -196,9 +226,9 @@ function displayForecast(response) {
                 <hr class="stylingHr" />
                 <span class="high">${Math.round(
                   forecastDay.temp.max
-                )}º</span> | <span class="low">${Math.round(
+                )}</span>º | <span class="low">${Math.round(
           forecastDay.temp.min
-        )}º</span>
+        )}</span>º
                 <br />
                 <i class="fa-solid fa-droplet"></i> ${forecastDay.humidity}%
               </div>`;

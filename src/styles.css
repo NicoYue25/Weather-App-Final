@@ -50,7 +50,7 @@ h5 {
   padding: 0 10px;
 }
 
-.units .active {
+.units .activeUnit {
   color: #6e2e6d;
   cursor: default;
   text-decoration: none;
