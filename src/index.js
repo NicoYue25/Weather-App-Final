@@ -112,6 +112,10 @@ function displayCurrentInfo(response) {
       `images/WeatherIcons/${response.data.weather[0].icon}.png`
     );
 
+  document
+    .querySelector("#weatherPic")
+    .setAttribute("src", `images/Pics/${response.data.weather[0].icon}.svg`);
+
   //temp
   celsiusCurrentTemp = response.data.main.temp;
   celsiusFeelsLike = response.data.main.feels_like;
